@@ -1,9 +1,6 @@
-import "./set-public-path"
 import Vue from "vue"
 import singleSpaVue from "single-spa-vue"
-
 import App from "./App.vue"
-// import router from "./router"
 
 Vue.config.productionTip = false
 
@@ -18,5 +15,18 @@ const vueLifecycles = singleSpaVue({
 })
 
 export const bootstrap = vueLifecycles.bootstrap
-export const mount = vueLifecycles.mount
+export const mount = (props) => {
+  let el = document.getElementById("product-relate")
+  if (!el) {
+    el = document.createElement("div")
+    el.id = "product-relate"
+    document.body.appendChild(el)
+    props.store = {
+      state: {
+        currentSku: "t_porsche",
+      },
+    }
+  }
+  return vueLifecycles.mount(props)
+}
 export const unmount = vueLifecycles.unmount
