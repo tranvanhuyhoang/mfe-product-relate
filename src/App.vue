@@ -31,7 +31,7 @@
       getThumbImgUrl: function (id) {
         return require('@/assets/images/reco_' + id + '.jpg');
       }
-    }
+    },
   }
 </script>
 
